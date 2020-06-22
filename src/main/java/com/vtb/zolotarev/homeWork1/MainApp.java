@@ -1,4 +1,4 @@
-package com.vtb.zolotarev.HomeWork1;
+package com.vtb.zolotarev.homeWork1;
 
 import java.util.Arrays;
 
