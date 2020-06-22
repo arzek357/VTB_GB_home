@@ -46,15 +46,12 @@ public class Group {
             System.out.println("В данной группе отсутствует сотрудник с индексом "+index);
             return;
         }
-        Employee[] newGroupState = new Employee[10];
-        System.arraycopy(groupState,0,newGroupState,0,index);
-        System.arraycopy(groupState,index+1,newGroupState,index,9-index);
-        groupState=newGroupState;
+        System.arraycopy(groupState,index,groupState,index-1,groupState.length-index-1);
         countOfEmployees--;
     }
 
     public void removeAll(){
-        groupState = new Employee[10];
+        Arrays.fill(groupState, null);
     }
 
     public void printEmployeesInfo(){
