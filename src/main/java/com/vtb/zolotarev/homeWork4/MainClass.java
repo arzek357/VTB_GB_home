@@ -7,7 +7,7 @@ public class MainClass {
     public static void main(String[] args) {
         String[][] array = {{"8", "6", "-1", "2"}, {"4", "2", "3", "8"}, {"4", "2", "1", "4"}, {"4", "6", "12", "3"}};
         try {
-            System.out.printf("Сумма всех приведенных значений внутри массива составляет %d", arraySum(array));
+            System.out.printf("Сумма всех приведенных значений внутри массива составляет: %d", arraySum(array));
         } catch (MyArraySizeException | MyArrayDataException k) {
             System.err.println(k.getMessage());
         }
