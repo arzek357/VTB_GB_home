@@ -6,13 +6,10 @@ public class Box {
 
     private final double maxWeight;
     private ArrayList<Fruit> boxContent;
+    private Fruit activeFruit;
     private String name;
-    private int activeFruitNumber;
-    private double activeWeight;
 
     public Box(double maxWeight, String name) {
-        activeFruitNumber = 0;
-        activeWeight=0;
         this.maxWeight = maxWeight;
         this.name = name;
         boxContent = new ArrayList<>();
@@ -20,27 +17,27 @@ public class Box {
 
     //Наполнение коробки фруктами
     public <E extends Fruit> void fill(int putNumber, E fruit) {
-        if (!isPossibleForFill(putNumber,fruit)){
+        if (!isPossibleForFill(putNumber, fruit)) {
             return;
         }
-        activeFruitNumber += putNumber;
-        activeWeight=activeFruitNumber*fruit.getWeight();
-        if (boxContent.isEmpty()) {
+
+        for (int i = 0; i < putNumber; i++) {
             boxContent.add(fruit);
         }
-        System.out.println(String.format("Успешное добавление %d фруктов типа %s в коробку %s",putNumber,fruit.getName(),name));
+        activeFruit = fruit;
+        System.out.println(String.format("Успешное добавление %d фруктов типа %s в коробку %s", putNumber, fruit.getName(), name));
     }
 
-     <E extends Fruit> boolean isPossibleForFill(int putNumber, E fruit) {
+    private <E extends Fruit> boolean isPossibleForFill(int putNumber, E fruit) {
         if (!boxContent.isEmpty() && !boxContent.contains(fruit)) {
-            System.out.println(String.format("В коробке %s уже лежат фрукты типа %s! Класть фрукты другого типа запрещено!", name, getFruitTypeInBox().getName()));
+            System.out.println(String.format("В коробке %s уже лежат фрукты типа %s! Класть фрукты другого типа запрещено!", name, getActiveFruit().getName()));
             return false;
         }
 
         double fruitsWeightToPut = putNumber * fruit.getWeight();
 
-        if (maxWeight - activeWeight < fruitsWeightToPut) {
-            System.out.println(String.format("Коробка %s не выдержит такой вес! Еще можно загрузить на %f", name, maxWeight - activeWeight));
+        if (maxWeight - boxContent.size() * fruit.getWeight() < fruitsWeightToPut) {
+            System.out.println(String.format("Коробка %s не выдержит такой вес! Еще можно загрузить на %f", name, maxWeight - getBoxContent().size() * fruit.getWeight()));
             return false;
         }
         return true;
@@ -48,23 +45,22 @@ public class Box {
 
     //Вес коробки
     public double getActiveWeight() {
-        return activeWeight;
+        if (getActiveFruit() == null) {
+            return 0;
+        }
+        return boxContent.size() * getActiveFruit().getWeight();
     }
 
     //Сравнить с другой коробкой по весу
     public boolean compareWeightWith(Box anotherBox) {
-        double weightInThisBox = this.getActiveFruitNumber() * this.getFruitTypeInBox().getWeight();
-        double weightInAnotherBox = anotherBox.getActiveFruitNumber() * anotherBox.getFruitTypeInBox().getWeight();
-        return (Math.abs(weightInThisBox - weightInAnotherBox) < 0.001);
+        return (Math.abs(this.getActiveWeight() - anotherBox.getActiveWeight()) < 0.001);
     }
 
     //Перебросить фрукты в другую коробку
     public void dropInAnotherBox(Box anotherBox) {
-        if (anotherBox.isPossibleForFill(this.activeFruitNumber,this.getFruitTypeInBox())){
-            anotherBox.fill(this.activeFruitNumber,this.getFruitTypeInBox());
-            this.activeFruitNumber=0;
-            this.activeWeight=0;
-            this.boxContent.remove(0);
+        if (anotherBox.isPossibleForFill(this.getBoxContent().size(), this.getActiveFruit())) {
+            anotherBox.fill(this.getBoxContent().size(), this.getActiveFruit());
+            this.boxContent.clear();
         }
     }
 
@@ -76,15 +72,15 @@ public class Box {
         return name;
     }
 
-    public int getActiveFruitNumber() {
-        return activeFruitNumber;
-    }
-
     public void setName(String name) {
         this.name = name;
     }
 
-    public Fruit getFruitTypeInBox() {
-        return boxContent.get(0);
+    private ArrayList<Fruit> getBoxContent() {
+        return boxContent;
+    }
+
+    public Fruit getActiveFruit() {
+        return activeFruit;
     }
 }
