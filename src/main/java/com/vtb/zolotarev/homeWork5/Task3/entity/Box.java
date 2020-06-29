@@ -2,11 +2,11 @@ package com.vtb.zolotarev.homeWork5.Task3.entity;
 
 import java.util.ArrayList;
 
-public class Box {
+public class Box<T extends Fruit> {
 
+    private T activeFruit;
     private final double maxWeight;
-    private ArrayList<Fruit> boxContent;
-    private Fruit activeFruit;
+    private ArrayList<T> boxContent;
     private String name;
 
     public Box(double maxWeight, String name) {
@@ -16,23 +16,21 @@ public class Box {
     }
 
     //Наполнение коробки фруктами
-    public <E extends Fruit> void fill(int putNumber, E fruit) {
+    public void fill(int putNumber, T fruit) {
         if (!isPossibleForFill(putNumber, fruit)) {
             return;
         }
 
-        for (int i = 0; i < putNumber; i++) {
-            boxContent.add(fruit);
-        }
         activeFruit = fruit;
+
+        for (int i =0;i<putNumber;i++){
+            boxContent.add(fruit.getNewFruit());
+        }
+
         System.out.println(String.format("Успешное добавление %d фруктов типа %s в коробку %s", putNumber, fruit.getName(), name));
     }
 
-    private <E extends Fruit> boolean isPossibleForFill(int putNumber, E fruit) {
-        if (!boxContent.isEmpty() && !boxContent.contains(fruit)) {
-            System.out.println(String.format("В коробке %s уже лежат фрукты типа %s! Класть фрукты другого типа запрещено!", name, getActiveFruit().getName()));
-            return false;
-        }
+    private boolean isPossibleForFill(int putNumber, T fruit) {
 
         double fruitsWeightToPut = putNumber * fruit.getWeight();
 
@@ -45,22 +43,23 @@ public class Box {
 
     //Вес коробки
     public double getActiveWeight() {
-        if (getActiveFruit() == null) {
+        if (activeFruit==null){
             return 0;
         }
-        return boxContent.size() * getActiveFruit().getWeight();
+        return boxContent.size() * activeFruit.getWeight();
     }
 
     //Сравнить с другой коробкой по весу
-    public boolean compareWeightWith(Box anotherBox) {
+    public boolean compareWeightWith(Box<?> anotherBox) {
         return (Math.abs(this.getActiveWeight() - anotherBox.getActiveWeight()) < 0.001);
     }
 
     //Перебросить фрукты в другую коробку
-    public void dropInAnotherBox(Box anotherBox) {
-        if (anotherBox.isPossibleForFill(this.getBoxContent().size(), this.getActiveFruit())) {
-            anotherBox.fill(this.getBoxContent().size(), this.getActiveFruit());
-            this.boxContent.clear();
+    public void dropInAnotherBox(Box<T> anotherBox) {
+        if (anotherBox.isPossibleForFill(boxContent.size(),activeFruit)) {
+            anotherBox.fill(boxContent.size(),activeFruit);
+            boxContent.clear();
+            activeFruit=null;
         }
     }
 
@@ -76,11 +75,8 @@ public class Box {
         this.name = name;
     }
 
-    private ArrayList<Fruit> getBoxContent() {
+    private ArrayList<T> getBoxContent() {
         return boxContent;
     }
 
-    public Fruit getActiveFruit() {
-        return activeFruit;
-    }
 }

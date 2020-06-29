@@ -5,4 +5,6 @@ public abstract class Fruit {
     abstract double getWeight();
 
     abstract String getName();
+
+    abstract <T extends Fruit> T getNewFruit();
 }

@@ -14,4 +14,10 @@ public class Apple extends Fruit {
     String getName() {
         return NAME;
     }
+
+    @Override
+    <T extends Fruit> T getNewFruit() {
+        return (T) new Apple();
+    }
+
 }
