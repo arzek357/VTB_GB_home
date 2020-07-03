@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class MainClass {
@@ -28,8 +29,8 @@ public class MainClass {
     }
 
     //Task3
-    public static int getSumEvenNumbers(int... numbers) {
-        return Arrays.stream(numbers).filter(s -> s % 2 == 0 && s <= 200 && s >= 100).sum();
+    public static int getSumEvenNumbersInFixRange(int minBound, int maxBound) {
+        return IntStream.rangeClosed(minBound, maxBound).filter(s -> s % 2 == 0).sum();
     }
 
     //Task4

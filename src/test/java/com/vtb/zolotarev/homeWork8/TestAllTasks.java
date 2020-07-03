@@ -36,15 +36,14 @@ public class TestAllTasks {
 
         testArr[0][0] = "Miss!";
 
-        List<String> expectedList = new ArrayList<>(Arrays.asList("Miss!","Hi, 0", "Hi, 1", "Hi, 2", "Hi, 3", "Hi, 4"));
+        List<String> expectedList = new ArrayList<>(Arrays.asList("Miss!", "Hi, 0", "Hi, 1", "Hi, 2", "Hi, 3", "Hi, 4"));
         Assertions.assertEquals(expectedList, MainClass.getUniqueWordsInArray(testArr));
     }
 
     @Test
     void task3Test() {
-        int[] testArr = {3, 2, 88, 345, 200, 123, 102, 5, 9, 14};
-        int expectedResult = 302;
-        Assertions.assertEquals(expectedResult, MainClass.getSumEvenNumbers(testArr));
+        int expectedResult = 7650;
+        Assertions.assertEquals(expectedResult, MainClass.getSumEvenNumbersInFixRange(100, 200));
     }
 
     @Test
