@@ -30,7 +30,7 @@ public class TestTask3 {
      * */
 
     @Test
-    void Task3Part1Test() {
+    void task3Part1Test() {
         long time = System.currentTimeMillis();
         for (int i = 0; i < 100000; i++) {
             int value = arrayList.get((int) (Math.random() * 49999)).getValue();
@@ -40,7 +40,7 @@ public class TestTask3 {
     }
 
     @Test
-    void Task3Part2Test() {
+    void task3Part2Test() {
         long time = System.currentTimeMillis();
         for (int i = 0; i < 100000; i++) {
             int value = hashMap.get((int) (Math.random() * 49999));

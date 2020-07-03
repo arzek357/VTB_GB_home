@@ -56,7 +56,7 @@ public class TestTask1AndTask2 {
      * */
 
     @Test
-    void Task1Part1Test() {
+    void task1Part1Test() {
         long time = System.currentTimeMillis();
         for (int i = 0; i < 10000; i++) {
             int test = arrayList1.get(4);
@@ -74,7 +74,7 @@ public class TestTask1AndTask2 {
     }
 
     @Test
-    void Task1Part2Test() {
+    void task1Part2Test() {
         long time = System.currentTimeMillis();
         for (int i = 0; i < 10000; i++) {
             int test = arrayList2.get(49);
@@ -92,7 +92,7 @@ public class TestTask1AndTask2 {
     }
 
     @Test
-    void Task1Part3Test() {
+    void task1Part3Test() {
         long time = System.currentTimeMillis();
         for (int i = 0; i < 10000; i++) {
             int test = arrayList3.get(4999);
@@ -110,7 +110,7 @@ public class TestTask1AndTask2 {
     }
 
     @Test
-    void Task1Part4Test() {
+    void task1Part4Test() {
         long time = System.currentTimeMillis();
         for (int i = 0; i < 10000; i++) {
             int test = arrayList4.get(49999);
@@ -134,7 +134,7 @@ public class TestTask1AndTask2 {
      * */
 
     @Test
-    void Task2Part1Test() {
+    void task2Part1Test() {
         long time = System.currentTimeMillis();
         for (int i = 0; i < arrayList1.size() / 2; i++) {
             arrayList1.remove(arrayList1.size() / 2);
@@ -152,7 +152,7 @@ public class TestTask1AndTask2 {
     }
 
     @Test
-    void Task2Part2Test() {
+    void task2Part2Test() {
         long time = System.currentTimeMillis();
         for (int i = 0; i < arrayList2.size() / 2; i++) {
             arrayList2.remove(arrayList2.size() / 2);
@@ -170,7 +170,7 @@ public class TestTask1AndTask2 {
     }
 
     @Test
-    void Task2Part3Test() {
+    void task2Part3Test() {
         long time = System.currentTimeMillis();
         for (int i = 0; i < arrayList3.size() / 2; i++) {
             arrayList3.remove(arrayList3.size() / 2);
@@ -188,7 +188,7 @@ public class TestTask1AndTask2 {
     }
 
     @Test
-    void Task2Part4Test() {
+    void task2Part4Test() {
         long time = System.currentTimeMillis();
         for (int i = 0; i < arrayList4.size() / 2; i++) {
             arrayList4.remove(arrayList4.size() / 2);
