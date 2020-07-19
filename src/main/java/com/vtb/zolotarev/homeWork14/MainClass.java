@@ -3,11 +3,6 @@ package com.vtb.zolotarev.homeWork14;
 import java.io.*;
 
 public class MainClass {
-    public static void main(String[] args) {
-        joinAllFilesFromDir(new File("src/main/resources/rhomeWork14/task2directory"), new File("src/main/resources/rhomeWork14/task2result.txt"));
-        fullDeleteDir(new File("src/main/resources/rhomeWork14"));
-    }
-
     public static int checkRepeatNumber(File file, String msg) {
         int resultCount = 0;
         try (BufferedReader rs = new BufferedReader(new FileReader(file))) {
@@ -67,18 +62,19 @@ public class MainClass {
     }
 
     public static void fullDeleteDir(File dir) {
-        dirDelete(dir);
+        recursiveFullDirDelete(dir);
         dir.delete();
     }
-    private static void dirDelete(File dir){
+
+    private static void recursiveFullDirDelete(File dir) {
         File[] files = dir.listFiles();
         if (files == null) {
             System.out.println("Пустая директория!");
             return;
         }
-        for (File file:files){
-            if (file.isDirectory()){
-                dirDelete(file);
+        for (File file : files) {
+            if (file.isDirectory()) {
+                recursiveFullDirDelete(file);
             }
             file.delete();
         }
