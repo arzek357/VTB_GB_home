@@ -16,12 +16,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class MainClass {
-    public static void main(String[] args) {
-        System.out.println(MainClass.checkRepeatNumberNio(new File("src/test/resources/rhomeWork14/test_file1.txt"), "aeff"));
-        findAllFilesLessOrEquals(new File("src/test/resources/rhomeWork14"), 100);
-        joinAllFilesFromDirNio(new File("src/test/resources/rhomeWork14/task2directory"), new File("src/test/resources/result.txt"));
-    }
-
     public static int checkRepeatNumberNio(File src, String msg) {
         int resultCount = 0;
         byte[] byteMsg = msg.getBytes();

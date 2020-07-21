@@ -48,6 +48,6 @@ public class TestAllTasks {
         files.add(new File("src/test/resources/rhomeWork15/task3directory/exampleDir/1.txt"));
         files.add(new File("src/test/resources/rhomeWork15/task3directory/exampleDir/2.txt"));
         files.add(new File("src/test/resources/rhomeWork15/task3directory/exampleDir/3.txt"));
-        Assertions.assertEquals(files, MainClass.findAllFilesLessOrEquals(new File("src/test/resources/rhomeWork15/task3directory"), 100l));
+        Assertions.assertEquals(files, MainClass.findAllFilesLessOrEquals(new File("src/test/resources/rhomeWork15/task3directory"), 100L));
     }
 }
